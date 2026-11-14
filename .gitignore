@@ -5,3 +5,6 @@ crash.log
 .env
 __pycache__/
 .venv/
+.tfvars
+.tfvars.json
+.env
