@@ -24,7 +24,7 @@ stages {
     }
     stage('Docker Build') {
         steps {
-            sh 'Docker build -t devops-flask-app .'
+            sh 'docker build -t devops-flask-app .'
         }
     }
 }
