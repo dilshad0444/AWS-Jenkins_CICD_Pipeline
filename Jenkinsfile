@@ -24,7 +24,7 @@ stages {
     }
     stage('Docker Build') {
         steps {
-            echo 'Docker build stage is ready'
+            sh 'Docker build -t devops-flask-app .'
         }
     }
 }
