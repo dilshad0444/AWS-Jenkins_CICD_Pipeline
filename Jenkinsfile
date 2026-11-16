@@ -7,7 +7,17 @@ stages {
             echo 'Starting CI/CD Pipeline'
             echo 'Source code is available from GitHub'
         }
+    }  
+stage('Check Docker') {
+    steps {
+        bat '''
+            echo Checking Docker...
+            where docker
+            docker --version
+            docker info
+        '''
     }
+}
     stage('Build') {
         steps {
             echo 'Building Flask Application'
