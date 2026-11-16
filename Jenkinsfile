@@ -27,7 +27,7 @@ pipeline {
     steps {
         withCredentials([
             [$class: 'AmazonWebServicesCredentialsBinding',
-             credentialsId: 'aws-credentials']
+             credentialsId: 'aws-cred']
         ]) {
             dir('terraform') {
                 bat 'terraform plan'
