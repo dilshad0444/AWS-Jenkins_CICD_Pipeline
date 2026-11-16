@@ -13,7 +13,7 @@ stages {
         steps {
             echo 'Building Flask Application'
 <<<<<<< HEAD
-            bat 'ls -la'
+            bat 'ls -l'
         }
     }
     stage('Test') {
