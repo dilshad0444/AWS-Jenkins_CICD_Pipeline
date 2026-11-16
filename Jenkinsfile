@@ -11,20 +11,20 @@ stages {
     stage('Build') {
         steps {
             echo 'Building Flask Application'
-            sh 'ls -la'
+            bat 'ls -la'
         }
     }
     stage('Test') {
         steps {
             echo 'Checking application files'
-            sh 'test -f app.py'
-            sh 'test -f Dockerfile'
-            sh 'test -f requirements.txt'
+            bat 'test -f app.py'
+            bat 'test -f Dockerfile'
+            bat 'test -f requirements.txt'
         }
     }
     stage('Docker Build') {
         steps {
-            sh 'docker build -t devops-flask-app .'
+            bat 'docker build -t devops-flask-app .'
         }
     }
 }
