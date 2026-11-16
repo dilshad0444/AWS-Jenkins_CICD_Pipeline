@@ -181,19 +181,3 @@ resource "aws_autoscaling_group" "dilu_scaling" {
     propagate_at_launch = true
   }
 }
-resource  "aws_iam_role" "dilu_role" {
-  name= "cloudwatch_role"
-  assume_role_policy = jsondecode({
-    version = "2012-10-17"
-    statement = [{
-      Effect ="allow"
-      principle = {
-        service = "ec2.amazonaws.com"
-      }
-      Action = "sts:AssumeRole"
-    }]
-  })
-  tags = {
-    name = "dilu_ec2_role"
-  }
-}
