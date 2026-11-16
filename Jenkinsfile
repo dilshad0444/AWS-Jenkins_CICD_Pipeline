@@ -9,6 +9,27 @@ pipeline {
                 echo 'Source code is available from GitHub'
             }
         }
+        stage('terraform init') {
+            steps {
+                dir ('terraform') {
+                    bat 'terraform init'
+                }
+            }
+        }
+        stage ('terraform validate') {
+            steps {
+                dir ('terraform') {
+                    bat 'terraform validate'
+                }
+            }
+        }
+        stage ('terraform plan') {
+            steps {
+                dir ('terraform') {
+                    bat 'terraform plan'
+                }
+            }
+        }
 
         stage('Build') {
             steps {
