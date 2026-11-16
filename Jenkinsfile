@@ -23,14 +23,18 @@ pipeline {
                 }
             }
         }
-        stage ('terraform plan') {
-            steps {
-                dir ('terraform') {
-                    bat 'terraform plan'
-                }
+        stage('Terraform Plan') {
+    steps {
+        withCredentials([
+            [$class: 'AmazonWebServicesCredentialsBinding',
+             credentialsId: 'aws-credentials']
+        ]) {
+            dir('terraform') {
+                bat 'terraform plan'
             }
         }
-
+    }
+        }
         stage('Build') {
             steps {
                 echo 'Building Flask Application'
