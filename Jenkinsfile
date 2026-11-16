@@ -11,7 +11,7 @@ stages {
     stage('Build') {
         steps {
             echo 'Building Flask Application'
-            bat 'ls'
+            bat 'dir'
         }
     }
     stage('Test') {
