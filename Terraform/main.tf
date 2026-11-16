@@ -90,8 +90,21 @@ resource "aws_instance" "my_ec2_instance2" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.my_public_subnet2.id
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  user_data = <<-EOF
+            #!/bin/bash
+            sudo su -
+            apt update -y
+            apt install docker.io -y
+
+            systemctl enable docker
+            systemctl start docker
+
+            docker pull dilshaddilu/devops-flask-app:latest
+
+            docker run --docker-flask-container -d -p 80:80 dilshaddilu/devops-flask-app:latest
+            EOF
   tags = {
-    Name = "my_ec2_instance2"
+    Name = "flask-Aplication"
   }
 }
 resource "aws_lb" "my_load_balancer" {
