@@ -34,6 +34,19 @@ pipeline {
             }
         }
     }
+    stage('terraform apply') {
+        steps {
+        input message: 'Do you approve applying Terraform changes?', ok: 'apply'
+        withCredentials([
+            [$class: 'AmazonWebServicesCredentialsBinding',
+            credentialsID: 'AWS_cred']
+        ]) {
+            dir ('terraform') {
+                bat 'terraform apply -auto-approve tfplan'
+            }
+        }
+        }
+    }
         }
         stage('Build') {
             steps {
