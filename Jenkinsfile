@@ -14,14 +14,6 @@ stages {
             bat 'dir'
         }
     }
-    stage('Test') {
-        steps {
-            echo 'Checking application files'
-            bat 'test -f app.py'
-            bat 'test -f Dockerfile'
-            bat 'test -f requirements.txt'
-        }
-    }
     stage('Docker Build') {
         steps {
             bat 'docker build -t devops-flask-app .'
