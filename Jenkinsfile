@@ -66,6 +66,19 @@ stages {
             echo ' Infrastructure destroyed'
         }
     }
+    stage('Terraform destroy') {
+        steps {
+            input message: 'Do you approve Destroy?', ok: 'yes'
+            withCredentials([
+                [$class: 'AmazonWebServicesCredentialsBinding',
+                 credentialsId: 'AWS_cred']
+            ]) {
+                dir('terraform') {
+                    bat 'terraform destroy -auto-approve tfplan'
+                }
+            }
+        }
+    }
 post {
     success {
         echo 'CI/CD Pipeline completed successfully!'
