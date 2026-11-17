@@ -58,13 +58,7 @@ stages {
             echo 'Building Docker Image'
             bat 'docker build -t devops-flask-app .'
         }
-    }
-    stage ('Terraform destroy') {
-        steps {
-            bat 'terraform destroy -auto-approve'
-            echo ' Infrastructure destroyed'
-        }
-    }
+    }    
     stage('Terraform destroy') {
         steps {
             input message: 'Do you approve Destroy?', ok: 'yes'
