@@ -60,6 +60,12 @@ stages {
         }
     }
 }
+    stage ('Terraform destroy') {
+        steps {
+            bat 'terraform destroy -auto-approve'
+            echo ' Infrastructure destroyed'
+        }
+    }
 post {
     success {
         echo 'CI/CD Pipeline completed successfully!'
