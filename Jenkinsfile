@@ -58,19 +58,6 @@ stages {
             echo 'Building Docker Image'
             bat 'docker build -t devops-flask-app .'
         }
-    }    
-    stage('Terraform destroy') {
-        steps {
-            input message: 'Do you approve Destroy?', ok: 'yes'
-            withCredentials([
-                [$class: 'AmazonWebServicesCredentialsBinding',
-                 credentialsId: 'AWS_cred']
-            ]) {
-                dir('terraform') {
-                    bat 'terraform destroy -auto-approve tfplan'
-                }
-            }
-        }
     }
 }
 post {
