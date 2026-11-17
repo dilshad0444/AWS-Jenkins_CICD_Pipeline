@@ -59,7 +59,6 @@ stages {
             bat 'docker build -t devops-flask-app .'
         }
     }
-}
     stage ('Terraform destroy') {
         steps {
             bat 'terraform destroy -auto-approve'
@@ -79,6 +78,7 @@ stages {
             }
         }
     }
+}
 post {
     success {
         echo 'CI/CD Pipeline completed successfully!'
